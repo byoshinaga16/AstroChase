@@ -1,4 +1,4 @@
-`/*
+/*
   MeggyJr_Blink.pde
  
  Example file using the The Meggy Jr Simplified Library (MJSL)
@@ -44,23 +44,38 @@ void setup()                    // run once, when the sketch starts
   MeggyJrSimpleSetup();      // Required code, line 2 of 2.
 }
 
-void loop()                     // run over and over again
-{
-  
-  for(int j = 0; j < 8; j++){
+int xcoord = 4;            //Places dot on starting point (4,4)
+int ycoord = 4;
 
-    for(int i = 0; i < 8; i++)
-      {
-        DrawPx(0,i,1);
-        DrawPx(i,0,1);
-        DrawPx(7,i,1);
-        DrawPx(i,7,1);
-        DisplaySlate();
-        delay(100);
-    
-      }
-    }
- 
- 
+void loop()                     // run over and over again
+{ 
+ DrawPx(xcoord,ycoord,1);
+ DisplaySlate();
+ CheckButtonsPress();       
+ ClearSlate();
+ if(Button_Up) {       //These statements allow the dot to be moved by buttons
+   ycoord++;
+ }
+ if(Button_Down) {
+   ycoord--;
+ }
+ if(Button_Left) {
+   xcoord--;
+ }
+ if(Button_Right) {
+   xcoord++;
+ }
+ if(xcoord > 7) {       //These statements keep the dot contained on the screen
+   xcoord = 7;
+ }
+ if(xcoord < 0) {
+   xcoord = 0;
+ }
+ if(ycoord > 7) {
+   ycoord = 7;
+ }
+ if(ycoord < 0) {
+   ycoord = 0;
+ } 
 }
 
