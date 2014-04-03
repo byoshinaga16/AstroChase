@@ -47,12 +47,19 @@ void setup()                    // run once, when the sketch starts
 int xcoord = 4;            //Places dot on starting point (4,4)
 int ycoord = 4;
 
+
 void loop()                     // run over and over again
 { 
- DrawPx(xcoord,ycoord,1);
+ DrawPx(xcoord,ycoord,15);
  DisplaySlate();
- CheckButtonsPress();       
+ CheckButtonsDown();       
  ClearSlate();
+ delay(75);
+ 
+ DrawPx(4,2,1);
+ DrawPx(5,2,1);
+ DrawPx(6,2,1);
+ DrawPx(7,2,1);
  if(Button_Up) {       //These statements allow the dot to be moved by buttons
    ycoord++;
  }
@@ -77,5 +84,10 @@ void loop()                     // run over and over again
  if(ycoord < 0) {
    ycoord = 0;
  } 
+ 
+ if(ReadPx(xcoord,ycoord)==1) {       //not working like a normal boundary
+   xcoord--;
+ }
+
 }
 
